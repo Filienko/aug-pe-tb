@@ -14,7 +14,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--model_name_or_path", type=str,
                     default="stsb-roberta-base-v2", required=False)
 parser.add_argument("--dataset", type=str, default="yelp",
-                    choices=["yelp", "pubmed", "openreview"],
+                    choices=["yelp", "pubmed", "openreview", "tb" ],
                     required=False)
 
 args = parser.parse_args()
@@ -25,7 +25,8 @@ feature_extractor = args.model_name_or_path
 
 data_files = {'pubmed': 'data/pubmed/train.csv',
               'yelp': 'data/yelp/train.csv',
-              'openreview': 'data/openreview/iclr23_reviews_train.csv'
+              'openreview': 'data/openreview/iclr23_reviews_train.csv',
+              'tb': 'data/tb/train.csv'
               }
 
 all_private_samples, all_private_labels, private_labels_counter, private_labels_indexer = load_data(
@@ -35,7 +36,7 @@ all_private_samples, all_private_labels, private_labels_counter, private_labels_
 
 all_private_features = extract_features(
     data=all_private_samples,
-    batch_size=10000,
+    batch_size=1000,
     model_name=feature_extractor,
 )
 

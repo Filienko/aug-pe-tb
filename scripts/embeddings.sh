@@ -14,11 +14,14 @@ case $1 in
   --pubmed)
     python pre_comp_emb.py --dataset pubmed --model_name_or_path 'sentence-t5-base'
     ;;
+  --tb)
+    python pre_comp_emb.py --dataset tb --model_name_or_path 'sentence-t5-base'
+    ;;
   --yelp)
     python pre_comp_emb.py --dataset yelp --model_name_or_path 'stsb-roberta-base-v2'
     ;;
   *)
-    echo "Invalid dataset. Available datasets are: --openreview, --pubmed, --yelp"
+    echo "Invalid dataset. Available datasets are: --openreview, --pubmed, --tb, --yelp"
     exit 1
     ;;
 esac
