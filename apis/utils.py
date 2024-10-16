@@ -61,6 +61,9 @@ ALL_OPENREVIEW_styles = ["in a detailed way",  "in a professional way", "with mo
 ALL_PUBMED_styles = ["in a professional way", "in a professional tone",  "in a professional style",   "in a concise manner",
                      "in a creative style", "using imagination", "in a storytelling tone",  "in a formal manner", "using a variety of sentence structures"
                      ]
+ALL_TB_styles = ["in a professional way", "in a professional tone",  "in a professional style",   "in a concise manner",
+                     "in a creative style", "using imagination", "in a storytelling tone",  "in a formal manner", "using a variety of sentence structures"
+                     ]
 
 
 def set_seed(seed, n_gpu=0):

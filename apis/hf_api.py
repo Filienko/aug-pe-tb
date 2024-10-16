@@ -5,7 +5,7 @@ import logging
 from .api import API
 import transformers
 import random
-from .utils import set_seed, get_subcategories, ALL_styles, ALL_OPENREVIEW_styles, ALL_PUBMED_styles
+from .utils import set_seed, get_subcategories, ALL_styles, ALL_OPENREVIEW_styles, ALL_PUBMED_styles, ALL_TB_styles
 import re
 import collections
 
@@ -82,7 +82,7 @@ class HFAPI(API):
             '--variation_type',
             type=str,
             default='rephrase',
-            choices=["yelp_rephrase_tone", "openreview_rephrase_tone", "pubmed_rephrase_tone",
+            choices=["yelp_rephrase_tone", "openreview_rephrase_tone", "pubmed_rephrase_tone", "tb_rephrase_tone"
                      ],
             help='Which image feature extractor to use')
         parser.add_argument("--mlm_probability", type=float, default=0.5)
@@ -257,6 +257,11 @@ class HFAPI(API):
             selected_style = ALL_PUBMED_styles[random.randrange(
                 len(ALL_PUBMED_styles))]
             prompt = "Please rephrase the following sentences {} as an abstract for medical research paper:\n{} \n".format(
+                selected_style, sequence)
+        elif variation_type == "tb_rephrase_tone":
+            selected_style = ALL_TB_styles[random.randrange(
+                len(ALL_TB_styles))]
+            prompt = "Please rephrase the following sentences {} as a response for tb bot:\n{} \n".format(
                 selected_style, sequence)
 
         return prompt
