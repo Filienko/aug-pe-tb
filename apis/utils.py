@@ -49,6 +49,16 @@ PUBMED_INIT_templates = [
     "please write an abstract for a medical research paper:",
 ]
 
+TB_INIT_templates = [
+    "Please share an abstract for a medical research paper:",
+    "Please provide an example of an abstract for a medical research paper:",
+    "Please generate an abstract for a medical research paper:",
+    "please share an abstract for a medical research paper as an example:",
+    "please write a sample abstract for a medical research paper:",
+    "please share an example of an abstract for a medical research paper:",
+    "please write an abstract for a medical research paper as an example:",
+    "please write an abstract for a medical research paper:",
+]
 
 ALL_styles = ["in a casual way", "in a creative style",  "in an informal way", "casually", "in a detailed way",
               "in a professional way", "with more details", "with a professional tone", "in a casual style", "in a professional style", "in a short way", "in a concise manner", "concisely", "briefly", "orally",
@@ -136,6 +146,12 @@ def get_subcategories(dataset):
         # print(subcategory_list)
     elif "pubmed" in dataset:
         fname = f'data/pubmed/writers.txt'
+        file1 = open(fname, 'r')
+        Lines = file1.readlines()
+        Lines = [s.replace('\n', '') for s in Lines]
+        subcategory_list = Lines
+    elif "tb" in dataset:
+        fname = f'data/tb/writers.txt'
         file1 = open(fname, 'r')
         Lines = file1.readlines()
         Lines = [s.replace('\n', '') for s in Lines]

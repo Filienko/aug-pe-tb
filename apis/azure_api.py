@@ -9,17 +9,16 @@ import copy
 import openai
 import re
 import collections
-from .utils import set_seed, get_subcategories, ALL_styles, ALL_OPENREVIEW_styles, ALL_PUBMED_styles, PROMPTS_templates, PUBMED_INIT_templates
+from .utils import set_seed, get_subcategories, ALL_styles, ALL_OPENREVIEW_styles, ALL_PUBMED_styles, PROMPTS_templates, PUBMED_INIT_templates, TB_INIT_templates
 from .openai_chat import openai_completions
 
 
 MODEL_CONFIG = {
-    'gpt-3.5-turbo': {"openai_api_key":  "YOUR_AZURE_OPENAI_API_KEY",
-                      "openai_api_base": "YOUR_AZURE_OPENAI_ENDPOINT",
-                      "engine": 'YOUR_DEPLOYMENT_NAME',
+    'gpt-3.5-turbo': {"openai_api_key":  "b3b11116a24c40f98232584f628e39fa",
+                      "openai_api_base": "https://llm-tb.openai.azure.com",
+                      "engine": 'gpt-35-turbo',
                       },
 }
-
 
 class MessageConstructor(object):
     def __init__(self, sys_demo, task_desc):
@@ -52,14 +51,14 @@ class AzureAPI(API):
             self.openai_api_base = MODEL_CONFIG[model_type]['openai_api_base']
             self.engine = MODEL_CONFIG[model_type]['engine']
             openai.api_type = 'azure'  # here we use azure openai service
-            openai.api_version = '2023-05-15'  # this may change in the future
+            openai.api_version = '2024-05-01-preview'  # this may change in the future
 
         openai.api_key = self.openai_api_key
         openai.api_base = self.openai_api_base
 
         self.num_procs = num_procs
         self.use_subcategory = use_subcategory
-        available_datasets = ['yelp', 'openreview', 'pubmed']
+        available_datasets = ['yelp', 'openreview', 'pubmed', 'tb']
 
         self.variation_type = variation_type
         self.init_template = None
@@ -206,6 +205,13 @@ class AzureAPI(API):
                 elif "pubmed" in self.variation_type:
                     prefix = PUBMED_INIT_templates[random.randrange(
                         len(PUBMED_INIT_templates))]  # random select one template
+                    rand_keyword_idx = random.randrange(
+                        len(self.subcategory_dict['pubmed']))
+                    keyword = self.subcategory_dict['pubmed'][rand_keyword_idx]
+                    prefix = f"Suppose that you are a {keyword}. " + prefix
+                elif "tb" in self.variation_type:
+                    prefix = TB_INIT_templates[random.randrange(
+                        len(TB_INIT_templates))]  # random select one template
                     rand_keyword_idx = random.randrange(
                         len(self.subcategory_dict['pubmed']))
                     keyword = self.subcategory_dict['pubmed'][rand_keyword_idx]

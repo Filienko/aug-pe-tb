@@ -44,6 +44,7 @@ class HFAPI(API):
             self.subcategory_dict = {}
             self.subcategory_dict['yelp'] = get_subcategories("yelp")
             self.subcategory_dict['pubmed'] = get_subcategories("pubmed")
+            self.subcategory_dict['tb'] = get_subcategories("tb")
             self.subcategory_dict['openreview'] = get_subcategories(
                 "openreview")
 
@@ -165,6 +166,9 @@ class HFAPI(API):
 
                 elif "pubmed" in self.variation_type:
                     full_prompt_text = "Using a variety of sentence structures, write an abstract for a medical research paper: "
+
+                elif "tb" in self.variation_type:
+                    full_prompt_text = "Using a variety of sentence structures, write a TB bot response: "
 
             else:
                 full_prompt_text = prompt
