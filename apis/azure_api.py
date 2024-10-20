@@ -14,7 +14,7 @@ from .openai_chat import openai_completions
 
 
 MODEL_CONFIG = {
-    'gpt-3.5-turbo': {"openai_api_key":  "b3b11116a24c40f98232584f628e39fa",
+    'gpt-3.5-turbo': {"openai_api_key":  "",
                       "openai_api_base": "https://llm-tb.openai.azure.com",
                       "engine": 'gpt-35-turbo',
                       },
