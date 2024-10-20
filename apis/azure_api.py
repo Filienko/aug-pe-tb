@@ -12,7 +12,6 @@ import collections
 from .utils import set_seed, get_subcategories, ALL_styles, ALL_OPENREVIEW_styles, ALL_PUBMED_styles, ALL_TB_styles, PROMPTS_templates, PUBMED_INIT_templates, TB_INIT_templates
 from .openai_chat import openai_completions
 
-
 MODEL_CONFIG = {
     'gpt-3.5-turbo': {"openai_api_key":  "",
                       "openai_api_base": "https://llm-tb.openai.azure.com",
