@@ -9,7 +9,7 @@ import copy
 import openai
 import re
 import collections
-from .utils import set_seed, get_subcategories, ALL_styles, ALL_OPENREVIEW_styles, ALL_PUBMED_styles, PROMPTS_templates, PUBMED_INIT_templates, TB_INIT_templates
+from .utils import set_seed, get_subcategories, ALL_styles, ALL_OPENREVIEW_styles, ALL_PUBMED_styles, ALL_TB_styles, PROMPTS_templates, PUBMED_INIT_templates, TB_INIT_templates
 from .openai_chat import openai_completions
 
 
@@ -315,6 +315,13 @@ class AzureAPI(API):
             demo_3 = f"Business Category: Shopping\tReview Stars: 3.0\nInput: I _ in _ and stopped in for a _. I was _ surprised. Good _, nice price.\nFill-in-Blanks {lens_prompt} 19 words: I was in a rush and stopped in for a mani-pedi. I was pleasantly surprised. Good service, nice price.\n"
             prompt = instruction + demo_1 + demo_2 + demo_3 + \
                 f"{label} \nInput: {masked_seq} \nFill-in-Blanks {lens_control}:"
+
+        elif "tb_blank_fill_3_shot_word" in variation_type:
+            selected_style = ALL_TB_styles[random.randrange(
+                len(ALL_TB_styles))]
+            instruction = f"You are required to fill in the blanks with more details for the input Argenitnian TB dialogue {selected_style}. If there is no blanks, please output the original TB conversation.\n"
+            prompt = instruction + \
+                f"Please fill in the blanks in the following sentences to write an empathetic Argentinian TB dialogue: \"{masked_seq}\" and your answer MUST be exactly {target_word} words.\n"
 
         return prompt, target_word
 

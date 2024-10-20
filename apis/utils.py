@@ -22,17 +22,29 @@ PROMPTS_templates = {
         "task_desc":  "",
     },
 
+    "init_tb":  {
+        "sys_prompt": "Eres un modelo de lenguaje que genera diálogos. A continuación te doy una conversación entre un paciente argentino con tuberculosis y su médico. Por favor, genera una conversación similar en tono y contenido, pero con variaciones que respeten la situación y el contexto.",
+        "task_desc": "",
+    },
+
     "variant_yelp":  {
         "sys_prompt": "You are a helpful, pattern-following assistant.",
         "task_desc": "",
     },
+
     "variant_pubmed":  {
         "sys_prompt": "Please act as a sentence generator for the medical domain. Generated sentences should mimic the style of PubMed journal articles, using a variety of sentence structures.",
         "task_desc":  "",
     },
+
     "variant_openreview":  {
         # Azure default system prompt
         "sys_prompt": "You are an AI assistant that helps people find information.",
+        "task_desc": "",
+    },
+
+    "variant_tb":  {
+        "sys_prompt": "Eres un modelo de lenguaje que genera diálogos. A continuación te doy una conversación entre un paciente argentino con tuberculosis y su médico. Por favor, genera una conversación similar en tono y contenido, pero con variaciones que respeten la situación y el contexto.",
         "task_desc": "",
     },
 
@@ -50,14 +62,9 @@ PUBMED_INIT_templates = [
 ]
 
 TB_INIT_templates = [
-    "Please share an abstract for a medical research paper:",
-    "Please provide an example of an abstract for a medical research paper:",
-    "Please generate an abstract for a medical research paper:",
-    "please share an abstract for a medical research paper as an example:",
-    "please write a sample abstract for a medical research paper:",
-    "please share an example of an abstract for a medical research paper:",
-    "please write an abstract for a medical research paper as an example:",
-    "please write an abstract for a medical research paper:",
+    "Please generate a conversation similar in tone and content, but with variations that respect the situation and context:",
+    "Here is the conversation. Mimic it: ",
+    "Please write an empathetic conversation similar to this between TB patient and doctor:",
 ]
 
 ALL_styles = ["in a casual way", "in a creative style",  "in an informal way", "casually", "in a detailed way",
@@ -65,15 +72,16 @@ ALL_styles = ["in a casual way", "in a creative style",  "in an informal way", "
               "with imagination", "with a tone of earnestness",  "in a grammarly-incorrect way", "with grammatical errors",  "in a non-standard grammar fashion",
               "in an oral way", "in a spoken manner", "articulately",  "by word of mouth",  "in a storytelling tone",
               "in a formal manner", "with an informal tone", "in a laid-back manner"]
+
 ALL_OPENREVIEW_styles = ["in a detailed way",  "in a professional way", "with more details",
                          "with a professional tone",  "in a professional style",   "in a concise manner"]
 
 ALL_PUBMED_styles = ["in a professional way", "in a professional tone",  "in a professional style",   "in a concise manner",
                      "in a creative style", "using imagination", "in a storytelling tone",  "in a formal manner", "using a variety of sentence structures"
                      ]
-ALL_TB_styles = ["in a professional way", "in a professional tone",  "in a professional style",   "in a concise manner",
-                     "in a creative style", "using imagination", "in a storytelling tone",  "in a formal manner", "using a variety of sentence structures"
-                     ]
+
+ALL_TB_styles = ["using a variety of sentence structures", "in a formal way", "in informal way", "in empathetic manner", 
+                 "usar una variedad de estructuras de oraciones", "de manera formal", "de manera informal", "de manera empática"]
 
 
 def set_seed(seed, n_gpu=0):
