@@ -8,7 +8,8 @@ from apis.utils import set_seed
 all_feature_extractor = ["sentence-t5-xl", "sentence-t5-large", "sentence-t5-base",
                          "all-MiniLM-L6-v2",  "all-mpnet-base-v2",
                          "paraphrase-MiniLM-L6-v2",
-                         "distilbert-base-nli-stsb-mean-tokens", "roberta-large-nli-stsb-mean-tokens"]
+                         "distilbert-base-nli-stsb-mean-tokens", "roberta-large-nli-stsb-mean-tokens", 
+                         "hiiamsid/sentence_similarity_spanish_es", "jaimevera1107/all-MiniLM-L6-v2-similarity-es"]
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--model_name_or_path", type=str,
