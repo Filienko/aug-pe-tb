@@ -13,8 +13,8 @@ echo generating $num_samples samples
 epochs=10
 word_var_scale=0
 select_syn_mode=rank
-model_type=gpt2
-noise=0
+model_type=DeepESP/gpt2-spanish
+noise=10
 args=""
 api="HFGPT"
 feature_extractor_batch_size=1024
@@ -24,12 +24,14 @@ elif [ "$model_type" = "gpt2-medium" ]; then
     batch_size=64
 elif [ "$model_type" = "gpt2" ]; then
     batch_size=128
+elif [ "$model_type" = "DeepESP/gpt2-spanish" ]; then
+    batch_size=128
 else
     batch_size=8
 fi
 result_folder="result/tb/${model_type}_${feat_ext}/${num_samples}_n${noise}_L${L}_initL${init_L}_var${lookahead_degree}_${var_type}_${select_syn_mode}_len${length}var${word_var_scale}_t${temperature}"
 
-
+echo "Loading"
 ### load datacheckpoint 
 data_checkpoint_args=""
 for  (( iter=0; iter<=epochs; iter++ ))
@@ -45,6 +47,7 @@ fi
 done
 echo load data from ${data_checkpoint_args} ${args}
 
+echo "Running PE"
 ### run PE
 python main.py ${args} ${data_checkpoint_args} \
 --train_data_file "data/tb/train.csv" \
@@ -76,7 +79,7 @@ python main.py ${args} ${data_checkpoint_args} \
 
 
 ### calculate downstream model acc 
-
+echo "Calculating downstream model accuracy"
 export WANDB_DISABLED="true"
 
 max_seq_length=512
@@ -183,8 +186,7 @@ do
     fi
 done
 done
-
-
+echo "Evaluating"
 ### calculate embedding distance metric
 python metric.py \
     --private_data_size 5000 \
