@@ -15,7 +15,7 @@ case $1 in
     python pre_comp_emb.py --dataset pubmed --model_name_or_path 'sentence-t5-base'
     ;;
   --tb)
-    python pre_comp_emb.py --dataset tb --model_name_or_path 'sentence-t5-base'
+    python pre_comp_emb.py --dataset tb --model_name_or_path 'hiiamsid/sentence_similarity_spanish_es'
     ;;
   --yelp)
     python pre_comp_emb.py --dataset yelp --model_name_or_path 'stsb-roberta-base-v2'

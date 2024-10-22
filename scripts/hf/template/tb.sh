@@ -1,6 +1,6 @@
 mlm_prob=0.6
 var_type="tb_rephrase_tone"
-feat_ext="sentence-t5-base"
+feat_ext="hiiamsid/sentence_similarity_spanish_es"  # jaimevera1107/all-MiniLM-L6-v2-similarity-es
 length=448
 temperature=1.0
 num_seed_samples=2000
@@ -14,7 +14,7 @@ epochs=10
 word_var_scale=0
 select_syn_mode=rank
 model_type=DeepESP/gpt2-spanish
-noise=10
+noise=0
 args=""
 api="HFGPT"
 feature_extractor_batch_size=1024
@@ -198,7 +198,3 @@ python metric.py \
     --train_data_embeddings_file result/embeddings/${feat_ext}/tb_train_all.embeddings.npz \
     --model_name_or_path ${feat_ext} \
     --dataset tb \
-
-
-
-
