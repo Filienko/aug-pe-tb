@@ -91,7 +91,7 @@ bash scripts/hf/{dataset}/generate.sh  # Replace `{dataset}` with yelp, openrevi
 Some key hyperparameters: 
 - `noise`: DP noise.
 - `epoch`: we use 10 epochs for DP setting. For the non-DP setting, we use 20 epochs for Yelp and 10 epochs for other datasets. 
-- `model_type`: model on huggingface, such as ["DeepESP/gpt2-spanish", "gpt2", "gpt2-medium", "gpt2-large", "meta-llama/Llama-2-7b-chat-hf", "tiiuae/falcon-7b-instruct", "facebook/opt-6.7b", "lmsys/vicuna-7b-v1.5", "mistralai/Mixtral-8x7B-Instruct-v0.1"].
+- `model_type`: model on huggingface, such as ["DeepESP/gpt2-spanish", "PlanTL-GOB-ES/gpt2-large-bne", "gpt2", "gpt2-medium", "gpt2-large", "meta-llama/Llama-2-7b-chat-hf", "tiiuae/falcon-7b-instruct", "facebook/opt-6.7b", "lmsys/vicuna-7b-v1.5", "mistralai/Mixtral-8x7B-Instruct-v0.1"].
 - `num_seed_samples`: number of synthetic samples. 
 - `lookahead_degree`: number of variations for synthetic sample embedding estimation (line 5 in Aug-PE algorithm). Default is 0 (self-embedding).
 - `L`: related to the number of variations to generate candidate synthetic samples (line 18 in Aug-PE algorithm)

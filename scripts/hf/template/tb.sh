@@ -13,12 +13,14 @@ echo generating $num_samples samples
 epochs=10
 word_var_scale=0
 select_syn_mode=rank
-model_type=DeepESP/gpt2-spanish
+model_type=PlanTL-GOB-ES/gpt2-large-bne
 noise=0
 args=""
 api="HFGPT"
 feature_extractor_batch_size=1024
 if [ "$model_type" = "gpt2-large" ]; then
+    batch_size=32
+elif [ "$model_type" = "PlanTL-GOB-ES/gpt2-large-bne" ]; then
     batch_size=32
 elif [ "$model_type" = "gpt2-medium" ]; then
     batch_size=64

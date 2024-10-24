@@ -75,7 +75,7 @@ class HFAPI(API):
         parser.add_argument(
             '--model_type',
             type=str,
-            default='DeepESP/gpt2-spanish',
+            default='PlanTL-GOB-ES/gpt2-large-bne',
             help='Which image feature extractor to use')
         parser.add_argument("--use_subcategory",
                             action="store_true", help="use subcategory")
