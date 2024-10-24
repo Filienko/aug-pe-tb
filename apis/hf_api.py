@@ -265,7 +265,7 @@ class HFAPI(API):
         elif variation_type == "tb_rephrase_tone":
             selected_style = ALL_TB_styles[random.randrange(
                 len(ALL_TB_styles))]
-            prompt = "Please rephrase the following sentences {} as a response for tb bot:\n{} \n".format(
+            prompt = "Reformule las siguientes oraciones {} como respuesta para tb bot:\n{} \n".format(
                 selected_style, sequence)
 
         return prompt
