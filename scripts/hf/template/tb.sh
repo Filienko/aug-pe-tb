@@ -13,7 +13,7 @@ echo generating $num_samples samples
 epochs=10
 word_var_scale=0
 select_syn_mode=rank
-model_type=PlanTL-GOB-ES/gpt2-large-bne
+model_type=ITG/DialoGPT-medium-spanish-chitchat
 noise=8
 args=""
 api="HFGPT"
@@ -24,9 +24,15 @@ elif [ "$model_type" = "PlanTL-GOB-ES/gpt2-large-bne" ]; then
     batch_size=32
 elif [ "$model_type" = "gpt2-medium" ]; then
     batch_size=64
+elif [ "$model_type" = "ITG/DialoGPT-medium-spanish-chitchat" ]; then
+    batch_size=64
 elif [ "$model_type" = "gpt2" ]; then
     batch_size=128
 elif [ "$model_type" = "DeepESP/gpt2-spanish" ]; then
+    batch_size=128
+elif [ "$model_type" = "ecastera/eva-mistral-catmacaroni-7b-spanish" ]; then
+    batch_size=16
+elif [ "$model_type" = "ostorc/Conversational_Spanish_GPT" ]; then
     batch_size=128
 else
     batch_size=8

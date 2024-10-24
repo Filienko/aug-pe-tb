@@ -54,11 +54,31 @@ class HFAPI(API):
             model_name_or_path, device_map="auto")
         self.tokenizer.pad_token = self.tokenizer.eos_token
         self.tokenizer.padding_side = "left"
+        quantization_config = transformers.BitsAndBytesConfig(
+            load_in_4bit=True,
+            load_in_8bit=False,
+            llm_int8_threshold=6.0,
+            llm_int8_has_fp16_weight=False,
+            bnb_4bit_compute_dtype="float16",
+            bnb_4bit_use_double_quant=True,
+            bnb_4bit_quant_type="nf4")
 
         if "gpt2" not in self.model_type:
             # use torch.float16 for large LLMs
             self.model = transformers.AutoModelForCausalLM.from_pretrained(
                 model_name_or_path, device_map="auto", torch_dtype=torch.float16)
+        elif "ES" or "spanish" in self.model_type:
+            self.model = transformers.AutoModelForCausalLM.from_pretrained(
+                model_name_or_path, 
+                device_map="auto",
+                load_in_8bit=True,
+                low_cpu_mem_usage=True,
+                torch_dtype=torch.float16,
+                quantization_config=quantization_config,
+                offload_state_dict=True,
+                offload_folder="./offload",
+                trust_remote_code=True)
+
         else:
             pad_token_id = self.tokenizer.pad_token_id if self.tokenizer.pad_token_id else self.tokenizer.eos_token_id
             self.model = transformers.AutoModelForCausalLM.from_pretrained(
