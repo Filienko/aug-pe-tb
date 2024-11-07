@@ -169,8 +169,6 @@ If you find our work helpful, please consider citing it as follows:
 ```
 
 
-
-
 ## Questions
 If you have any questions related to the code or the paper, feel free to email Chulin (chulinx2@illinois.edu) or open an issue.
 

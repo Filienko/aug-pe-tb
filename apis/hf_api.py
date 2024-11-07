@@ -188,7 +188,7 @@ class HFAPI(API):
                     full_prompt_text = "Using a variety of sentence structures, write an abstract for a medical research paper: "
 
                 elif "tb" in self.variation_type:
-                    full_prompt_text = "Using a variety of sentence structures, write a TB bot response: "
+                    full_prompt_text = "Escribe un diálogo similar sobre tuberculosis: "
 
             else:
                 full_prompt_text = prompt
@@ -314,6 +314,7 @@ class HFAPI(API):
             batch_prompt = []
             batch_labels = []
             for idx in range(start_idx, end_idx):
+                print("SEQUENCE", sequences)
                 prompt = self._rephrase(
                     labels[idx], sequences[idx], variation_type)
                 batch_prompt.append(prompt)

@@ -62,9 +62,9 @@ PUBMED_INIT_templates = [
 ]
 
 TB_INIT_templates = [
-    "Please generate a conversation similar in tone and content, but with variations that respect the situation and context:",
-    "Here is the conversation. Mimic it: ",
-    "Please write an empathetic conversation similar to this between TB patient and doctor:",
+    "Por favor genere una conversación similar en tono y contenido, pero con variaciones que respeten la situación y el contexto:",
+    "Aquí está la conversación. Imítala: ",
+    "Por favor, escriba una conversación empática similar a esta entre un paciente con tuberculosis y un médico:",
 ]
 
 ALL_styles = ["in a casual way", "in a creative style",  "in an informal way", "casually", "in a detailed way",
@@ -80,7 +80,7 @@ ALL_PUBMED_styles = ["in a professional way", "in a professional tone",  "in a p
                      "in a creative style", "using imagination", "in a storytelling tone",  "in a formal manner", "using a variety of sentence structures"
                      ]
 
-ALL_TB_styles = ["using a variety of sentence structures", "in a formal way", "in informal way", "in empathetic manner", 
+ALL_TB_styles = ["usando una variedad de estructuras de oraciones", "de manera formal", "de manera informal", "de manera empática", 
                  "usar una variedad de estructuras de oraciones", "de manera formal", "de manera informal", "de manera empática"]
 
 
@@ -139,9 +139,7 @@ def timeout(sec):
 
 def get_subcategories(dataset):
     if "yelp" in dataset:
-        category_list = {'Restaurants', 'Bars', 'Shopping', 'Event Planning & Services',
-                         'Beauty & Spas', 'Arts & Entertainment', 'Hotels & Travel',
-                         'Health & Medical', 'Grocery', 'Home & Garden'}
+        category_list = {'diálogo', 'respuesta'}
 
         subcategory_list = {}
         for cate in category_list:
